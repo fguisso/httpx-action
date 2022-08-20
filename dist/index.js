@@ -6829,13 +6829,6 @@ const output = core.getInput('output', { required: false });
 const json = core.getBooleanInput('json', { required: false });
 const flags = core.getInput('flags', { required: false });
 
-const options = {};
-options.listeners = {
-  debug: (data) => {
-    console.log("Debug: " + data);
-  }
-};
-
 async function run() {
 	try {
 		// download and install
@@ -6855,7 +6848,7 @@ async function run() {
         if (flags) params.push(...parseFlagsToArray(flags));
 
         // execute the final command with parsed flags
-        exec.exec(binPath, params, options);
+        await exec.exec(binPath, params);
 	} catch (error) {
 		core.setFailed(error.message);
 	}

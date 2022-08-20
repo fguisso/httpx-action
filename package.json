@@ -1,0 +1,32 @@
+{
+  "name": "httpx-action",
+  "version": "2.0.0",
+  "description": "httpx Action makes it easy to orchestrate httpx with GitHub Action.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx ncc build src/index.js --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projectdiscovery/httpx-action.git"
+  },
+  "keywords": [
+    "httpx",
+    "http"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/projectdiscovery/httpx-action/issues"
+  },
+  "homepage": "https://github.com/projectdiscovery/httpx-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/tool-cache": "^2.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0"
+  }
+}

@@ -6829,16 +6829,10 @@ const output = core.getInput('output', { required: false });
 const json = core.getBooleanInput('json', { required: false });
 const flags = core.getInput('flags', { required: false });
 
-let execOutput = '';
-let execError = '';
-
 const options = {};
 options.listeners = {
-  stdout: (data) => {
-    execOutput += data.toString();
-  },
-  stderr: (data) => {
-    execError += data.toString();
+  debug: (data) => {
+    console.log("Debug: " + data);
   }
 };
 

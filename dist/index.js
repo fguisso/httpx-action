@@ -6842,7 +6842,7 @@ async function run() {
         }
 
         // Setting up flags
-        if (!list) params.push(`-list=${list}`);
+        params.push(`-list=${list}`);
         params.push(`-o=${ output ? output : 'httpx.log' }`);
         if (json) params.push('-json');
 

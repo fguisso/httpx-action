@@ -6793,11 +6793,11 @@ async function downloadAndInstall(selectedVersion) {
 	const packageName = getPackage();
 	const url = `${ROOT_URL}/v${version}/${TOOL_NAME}_${version}_${packageName}.zip`;
 
-	core.info(`Download version ${version} from ${url}.`);
+	core.info(`Download version ${version} from ${url}`);
 
 	const downloadDir = await tool_cache.downloadTool(url);
 	if (downloadDir == null) {
-		throw new Error(`Unable to download ${TOOL_NAME} from ${url}.`);
+		throw new Error(`Unable to download ${TOOL_NAME} from ${url}`);
 	}
 
 	const installDir = await tool_cache.extractZip(downloadDir);
@@ -6806,9 +6806,9 @@ async function downloadAndInstall(selectedVersion) {
 	}
 
 	const binPath = `${installDir}/${TOOL_NAME}`
-	external_fs_default().chmodSync(binPath, "777");
+	external_fs_default().chmodSync(binPath, "755");
 
-	core.info(`${TOOL_NAME} ${version} was successfully installed to ${installDir}.`);
+	core.info(`${TOOL_NAME} ${version} was successfully installed to ${installDir}`);
 	core.endGroup();
 	return binPath
 }
@@ -6824,7 +6824,7 @@ function parseFlagsToArray(rawFlags) {
 
 
 // Github Actions Inputs
-const version = core.getInput('version', { required: true });
+const version = core.getInput('version', { required: false });
 const list = core.getInput('list', { required: true });
 const output = core.getInput('output', { required: false });
 const json = core.getBooleanInput('json', { required: false });
@@ -6842,7 +6842,7 @@ async function run() {
         }
 
         // Setting up flags
-        if (list) params.push(`-list=${list}`);
+        if (!list) params.push(`-list=${list}`);
         params.push(`-o=${ output ? output : 'httpx.log' }`);
         if (json) params.push('-json');
 

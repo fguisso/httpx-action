@@ -22,6 +22,10 @@ inputs:
   flags:
     description: "Extra httpx CLI flags to use"
     required: false
+  
+  version:
+    description: "httpx version. default to latest"
+    required: false
 
 runs:
   using: 'node16'

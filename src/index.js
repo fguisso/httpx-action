@@ -4,7 +4,7 @@ import * as installer from './installer';
 import { parseFlagsToArray } from './utils';
 
 // Github Actions Inputs
-const version = core.getInput('version', { required: true });
+const version = core.getInput('version', { required: false });
 const list = core.getInput('list', { required: true });
 const output = core.getInput('output', { required: false });
 const json = core.getBooleanInput('json', { required: false });
@@ -22,7 +22,7 @@ async function run() {
         }
 
         // Setting up flags
-        if (list) params.push(`-list=${list}`);
+        if (!list) params.push(`-list=${list}`);
         params.push(`-o=${ output ? output : 'httpx.log' }`);
         if (json) params.push('-json');
 

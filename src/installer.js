@@ -46,11 +46,11 @@ export async function downloadAndInstall(selectedVersion) {
 	const packageName = getPackage();
 	const url = `${ROOT_URL}/v${version}/${TOOL_NAME}_${version}_${packageName}.zip`;
 
-	core.info(`Download version ${version} from ${url}.`);
+	core.info(`Download version ${version} from ${url}`);
 
 	const downloadDir = await tc.downloadTool(url);
 	if (downloadDir == null) {
-		throw new Error(`Unable to download ${TOOL_NAME} from ${url}.`);
+		throw new Error(`Unable to download ${TOOL_NAME} from ${url}`);
 	}
 
 	const installDir = await tc.extractZip(downloadDir);
@@ -59,9 +59,9 @@ export async function downloadAndInstall(selectedVersion) {
 	}
 
 	const binPath = `${installDir}/${TOOL_NAME}`
-	fs.chmodSync(binPath, "777");
+	fs.chmodSync(binPath, "755");
 
-	core.info(`${TOOL_NAME} ${version} was successfully installed to ${installDir}.`);
+	core.info(`${TOOL_NAME} ${version} was successfully installed to ${installDir}`);
 	core.endGroup();
 	return binPath
 }

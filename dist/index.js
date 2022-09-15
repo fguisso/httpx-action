@@ -6800,7 +6800,7 @@ async function downloadAndInstall(selectedVersion) {
 		throw new Error(`Unable to download ${TOOL_NAME} from ${url}`);
 	}
 
-	const installDir = await tool_cache.extractZip(downloadDir);
+	const installDir = await tool_cache.extractZip(downloadDir, `/bin/${TOOL_NAME}_${version}`);
 	if (installDir == null) {
 		throw new Error(`Unable to extract ${TOOL_NAME}.`);
 	}

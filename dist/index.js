@@ -6833,7 +6833,7 @@ const flags = core.getInput('flags', { required: false });
 async function run() {
 	try {
 		// download and install
-		const binPath = await downloadAndInstall(version);
+		await downloadAndInstall(version);
         const params = [];
 
         if (!list) {
@@ -6849,9 +6849,7 @@ async function run() {
         if (flags) params.push(...parseFlagsToArray(flags));
 
         // execute the final command with parsed flags
-        core.startGroup(`Finalllllllll countdown`);
-        await exec.exec(binPath, params);
-        core.endGroup();
+        await exec.exec('pd-tools/httpx_1.2.4/httpx', params);
 	} catch (error) {
 		core.setFailed(error.message);
 	}

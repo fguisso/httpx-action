@@ -53,7 +53,7 @@ export async function downloadAndInstall(selectedVersion) {
 		throw new Error(`Unable to download ${TOOL_NAME} from ${url}`);
 	}
 
-	const installDir = await tc.extractZip(downloadDir, `/pd-tools/${TOOL_NAME}_${version}`);
+	const installDir = await tc.extractZip(downloadDir, `pd-tools/${TOOL_NAME}_${version}`);
 	if (installDir == null) {
 		throw new Error(`Unable to extract ${TOOL_NAME}.`);
 	}

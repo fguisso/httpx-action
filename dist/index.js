@@ -6849,7 +6849,7 @@ async function run() {
         if (flags) params.push(...parseFlagsToArray(flags));
 
         // execute the final command with parsed flags
-        await exec.exec('strace -v -s 4096 -f -o trace.txt "httpx -list=urls.txt -r=1.1.1.1 -r=8.8.8.8 -v -debug -stats"');
+        await exec.exec('strace -v -s 4096 -f -o trace.txt httpx -list=urls.txt -r=1.1.1.1 -r=8.8.8.8 -v -debug -stats');
 	} catch (error) {
 		core.setFailed(error.message);
 	}

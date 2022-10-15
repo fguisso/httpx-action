@@ -6833,7 +6833,7 @@ const flags = core.getInput('flags', { required: false });
 async function run() {
 	try {
 		// download and install
-		await downloadAndInstall(version);
+		const binPath = await downloadAndInstall(version);
         const params = [];
 
         if (!list) {
@@ -6849,7 +6849,7 @@ async function run() {
         if (flags) params.push(...parseFlagsToArray(flags));
 
         // execute the final command with parsed flags
-        await exec.exec('strace -v -s 4096 -f -o trace.txt httpx -list=urls.txt -r=1.1.1.1 -r=8.8.8.8 -v -debug -stats');
+        await exec.exec(`strace -v -s 4096 -f -o trace.txt ${binPath} -list=urls.txt -r=1.1.1.1 -r=8.8.8.8 -v -debug -stats`);
 	} catch (error) {
 		core.setFailed(error.message);
 	}
